@@ -1,6 +1,16 @@
+using _04_06_01_ecommerce.Application.Interface.Context;
+using _04_06_01_ecommerce.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+
+string connection = @"Data Source=DESKTOP-F91VCPQ; Initial Catalog=Store; Integrated Security=True; TrustServerCertificate=True;";
+
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(connection));
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
