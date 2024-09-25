@@ -17,15 +17,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{0429137E-594D-4DD2-947F-75BD538C0C00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-06-01-ecommerce.Domain", "04-06-01-ecommerce.Domain\04-06-01-ecommerce.Domain.csproj", "{396185E1-2BEB-4D7F-B912-460D4D0A7770}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-06-01-ecommerce.Domain", "04-06-01-ecommerce.Domain\04-06-01-ecommerce.Domain.csproj", "{396185E1-2BEB-4D7F-B912-460D4D0A7770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-06-01-ecommerce.Application", "04-06-01-ecommerce.Application\04-06-01-ecommerce.Application.csproj", "{BE944EC1-2301-4410-B9D2-C1243548F948}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-06-01-ecommerce.Application", "04-06-01-ecommerce.Application\04-06-01-ecommerce.Application.csproj", "{BE944EC1-2301-4410-B9D2-C1243548F948}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-06-01-ecommerce.Infrastructure", "04-06-01-ecommerce.Infrastructure\04-06-01-ecommerce.Infrastructure.csproj", "{9F1FBDB5-393D-4D0F-90F0-2BAE95B905AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-06-01-ecommerce.Infrastructure", "04-06-01-ecommerce.Infrastructure\04-06-01-ecommerce.Infrastructure.csproj", "{9F1FBDB5-393D-4D0F-90F0-2BAE95B905AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-06-01-ecommerce.Persistence", "04-06-01-ecommerce.Persistence\04-06-01-ecommerce.Persistence.csproj", "{85AD12E4-9953-418C-A9F9-1656470516A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-06-01-ecommerce.Persistence", "04-06-01-ecommerce.Persistence\04-06-01-ecommerce.Persistence.csproj", "{85AD12E4-9953-418C-A9F9-1656470516A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endpint.WebSite", "Endpint.WebSite\Endpint.WebSite.csproj", "{AB7D76F3-592F-4E4F-83BF-22DB490DFA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Endpint.WebSite", "Endpint.WebSite\Endpint.WebSite.csproj", "{AB7D76F3-592F-4E4F-83BF-22DB490DFA70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-06-01-ecommerce.Common", "04-06-01-ecommerce.Common\04-06-01-ecommerce.Common.csproj", "{5A652439-81B8-4E8F-8DA3-52B876EC825B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{AB7D76F3-592F-4E4F-83BF-22DB490DFA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB7D76F3-592F-4E4F-83BF-22DB490DFA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB7D76F3-592F-4E4F-83BF-22DB490DFA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A652439-81B8-4E8F-8DA3-52B876EC825B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A652439-81B8-4E8F-8DA3-52B876EC825B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A652439-81B8-4E8F-8DA3-52B876EC825B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A652439-81B8-4E8F-8DA3-52B876EC825B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{9F1FBDB5-393D-4D0F-90F0-2BAE95B905AD} = {A83CDE2A-0F69-43E5-8C06-B672EE970837}
 		{85AD12E4-9953-418C-A9F9-1656470516A6} = {A83CDE2A-0F69-43E5-8C06-B672EE970837}
 		{AB7D76F3-592F-4E4F-83BF-22DB490DFA70} = {0429137E-594D-4DD2-947F-75BD538C0C00}
+		{5A652439-81B8-4E8F-8DA3-52B876EC825B} = {250F6F88-73EA-45EE-BFF7-26BCC01DD231}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2877B1F-330D-460A-8F2D-75F4041E96BA}
