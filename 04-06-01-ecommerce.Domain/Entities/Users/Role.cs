@@ -1,4 +1,4 @@
-﻿namespace _04_06_01_ecommerce.Domain.Entities
+﻿namespace _04_06_01_ecommerce.Domain.Entities.Users
 {
     public class Role
     {

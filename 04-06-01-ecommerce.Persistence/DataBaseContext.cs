@@ -1,6 +1,6 @@
 ﻿using _04_06_01_ecommerce.Application.Interface.Context;
 using _04_06_01_ecommerce.Common.Role;
-using _04_06_01_ecommerce.Domain.Entities;
+using _04_06_01_ecommerce.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,6 +25,10 @@ namespace _04_06_01_ecommerce.Persistence
             modelBuilder.Entity<Role>().HasData(new Role { Id = 1, Name = nameof(UserRoles.Admin) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 2, Name = nameof(UserRoles.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 3, Name = nameof(UserRoles.Customer) });
+
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+
+            modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsDeleted);
         }
     }
 }

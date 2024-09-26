@@ -1,4 +1,4 @@
-﻿using _04_06_01_ecommerce.Domain.Entities;
+﻿using _04_06_01_ecommerce.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
