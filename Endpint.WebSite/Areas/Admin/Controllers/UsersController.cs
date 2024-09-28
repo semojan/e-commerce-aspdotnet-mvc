@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _04_06_01_ecommerce.Application.Services.Users.Commands.ChangeStatusUser;
+using _04_06_01_ecommerce.Application.Services.Users.Commands.EditUserService;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.RemoveUser;
 using _04_06_01_ecommerce.Application.Services.Users.Queries.GetRoles;
@@ -18,18 +20,24 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly IGetRolesService _getRolesService;
         private readonly IRegisterUserService _registerUserService;
         private readonly IRemoveUserService _removeUserService;
+        private readonly IChangeStatusUserService _changeStatusUserService;
+        private readonly IEditUserService _editUserService;
 
 
         public UsersController(
             IGetUsersService getUsersService, 
             IGetRolesService getRolesService,
             IRegisterUserService registerUserService,
-            IRemoveUserService removeUserService)
+            IRemoveUserService removeUserService,
+            IChangeStatusUserService changeStatusUserService,
+            IEditUserService editUserService)
         {
             _getUsersService = getUsersService;
             _getRolesService = getRolesService;
             _registerUserService = registerUserService;
             _removeUserService = removeUserService;
+            _changeStatusUserService = changeStatusUserService;
+            _editUserService = editUserService;
         }
 
         [HttpGet]
@@ -84,5 +92,20 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             return Json(_removeUserService.Execute(UserId));
         }
             
+        [HttpPost]
+        public IActionResult ChangeStatus(int UserId)
+        {
+            return Json(_changeStatusUserService.Execute(UserId));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int UserId, string FullName)
+        {
+            return Json(_editUserService.Execute(new RequestEditUserDto()
+            {
+                FullName = FullName,
+                UserId = UserId
+            }));
+        }
     }
 }
