@@ -1,4 +1,4 @@
-﻿ @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "ثبت نام کاربر جدید";
     Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
@@ -108,8 +108,8 @@
                     var RePassword = $("#RePassword").val();
 
                     var postData = {
-                        'FullName': fullname,
-                        'Email': email,
+                        'fullname': fullname,
+                        'email': email,
                         'RoleId': RoleId,
                         'Password': Password,
                         'RePassword': RePassword,
@@ -139,7 +139,7 @@
                                     'هشدار!',
                                     data.message,
                                     'warning'
-                                );
+                                ) ;
 
                             }
                         },

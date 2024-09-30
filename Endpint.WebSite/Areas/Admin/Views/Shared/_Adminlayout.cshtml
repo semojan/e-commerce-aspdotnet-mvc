@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
 
@@ -56,11 +57,23 @@
                         <li class="has-sub nav-item">
                             <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
                             <ul class="menu-content">
-                                <li class="active">
+                                <li>
                                     <a href="~/admin/users/index" class="menu-item">لیست کاربران</a>
                                 </li>
                                 <li>
                                     <a href="~/admin/users/Create" class="menu-item">ثبت نام کاربر جدید *</a>
+                                </li>
+                            </ul>
+                        </li>  
+                        
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title">  دسته بندی ها </span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="~/admin/categories/" class="menu-item">دسته بندی ها</a>
+                                </li>
+                                <li>
+                                    <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید *</a>
                                 </li>
                             </ul>
                         </li>
@@ -148,7 +161,7 @@
 
         <div class="main-panel">
             <div class="main-content">
-                @RenderBody()
+               @RenderBody()
             </div>
 
             <footer class="footer footer-static footer-light">
@@ -388,7 +401,7 @@
     </div>
     <!-- BEGIN VENDOR JS-->
 
-
+    
     <script src="~/AdminTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
     <script src="~/AdminTemplate/app-assets/js/persian-datepicker.min.js"></script>
     <script src="~/AdminTemplate/app-assets/vendors/js/core/popper.min.js"></script>
@@ -408,9 +421,10 @@
     <!-- END CONVEX JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <!-- END PAGE LEVEL JS-->
-    @RenderSection("Scripts", false)
 
-    @RenderSection("Modals", false)
+    @RenderSection("Scripts",false)   
+    
+    @RenderSection("Modals",false)
 </body>
 
 <!-- Mirrored from pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/demo-1/grids.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Sep 2018 14:54:38 GMT -->

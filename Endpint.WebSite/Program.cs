@@ -3,6 +3,7 @@ using _04_06_01_ecommerce.Application.Services.Users.Commands.ChangeStatusUser;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.EditUserService;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.RemoveUser;
+using _04_06_01_ecommerce.Application.Services.Users.Commands.UserLoginService;
 using _04_06_01_ecommerce.Application.Services.Users.Queries.GetRoles;
 using _04_06_01_ecommerce.Application.Services.Users.Queries.GetUsers;
 using _04_06_01_ecommerce.Persistence;
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IRegisterUserService, RegisterUserService>();
 builder.Services.AddScoped<IRemoveUserService, RemoveUserService>();
 builder.Services.AddScoped<IChangeStatusUserService, ChangeStatusUserService>();
 builder.Services.AddScoped<IEditUserService, EditUserService>();
+builder.Services.AddScoped<IUserLoginService, UserLoginService>();
 
 
 string connection = @"Data Source=DESKTOP-F91VCPQ; Initial Catalog=Store; Integrated Security=True; TrustServerCertificate=True;";

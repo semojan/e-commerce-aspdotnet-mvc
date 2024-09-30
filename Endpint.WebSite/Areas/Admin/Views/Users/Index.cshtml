@@ -1,10 +1,10 @@
-﻿@using _04_06_01_ecommerce.Application.Services.Users.Queries.GetUsers
-@model ResultGetUserDto;
+﻿@using Bugeto_Store.Application.Services.Users.Queries.GetUsers
+@model ReslutGetUserDto;
+
 @{
-    ViewData["Title"] = "لیست کاربران";
+    ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
 }
-
 
 
 <div class="content-wrapper">
@@ -52,12 +52,12 @@
                                                             <button class="btn btn-danger" onclick="DeleteUser('@item.Id')">حذف</button>
                                                             @if (item.IsActive)
                                                             {
-                                                                <button class="btn btn-warning" onclick="UserSatusChange('@item.Id')">فعال</button>
+                                                                <button class="btn btn-warning" onclick="UserSatusChange('@item.Id')">غیر فعال</button>
 
                                                             }
                                                             else
                                                             {
-                                                                <button class="btn btn-info" onclick="UserSatusChange('@item.Id')">غیر فعال</button>
+                                                                <button class="btn btn-info" onclick="UserSatusChange('@item.Id')">فعال کردن کاربر  </button>
                                                             }
                                                         </td>
                                                     </tr>
@@ -106,7 +106,7 @@
                         contentType: 'application/x-www-form-urlencoded',
                         dataType: 'json',
                         type: "POST",
-                        url: "users/Delete",
+                        url: "Delete",
                         data: postData,
                         success: function (data) {
                             if (data.isSuccess == true) {
@@ -130,9 +130,6 @@
                         },
                         error: function (request, status, error) {
                             alert(request.responseText);
-                            console.log(error);
-                            console.log(status);
-                            console.log(request.responseText);
                         }
 
                     });
@@ -163,7 +160,7 @@
                         contentType: 'application/x-www-form-urlencoded',
                         dataType: 'json',
                         type: "POST",
-                        url: "ChangeStatus",
+                        url: "UserSatusChange",
                         data: postData,
                         success: function (data) {
                             if (data.isSuccess == true) {

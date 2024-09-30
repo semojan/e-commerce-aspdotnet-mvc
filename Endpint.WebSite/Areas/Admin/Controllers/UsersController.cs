@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using _04_06_01_ecommerce.Application.Services.Users.Commands.ChangeStatusUser;
-using _04_06_01_ecommerce.Application.Services.Users.Commands.EditUserService;
-using _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser;
-using _04_06_01_ecommerce.Application.Services.Users.Commands.RemoveUser;
-using _04_06_01_ecommerce.Application.Services.Users.Queries.GetRoles;
-using _04_06_01_ecommerce.Application.Services.Users.Queries.GetUsers;
+using Bugeto_Store.Application.Services.Users.Commands.EditUser;
+using Bugeto_Store.Application.Services.Users.Commands.RemoveUser;
+using Bugeto_Store.Application.Services.Users.Commands.RgegisterUser;
+using Bugeto_Store.Application.Services.Users.Commands.UserSatusChange;
+using Bugeto_Store.Application.Services.Users.Queries.GetRoles;
+using Bugeto_Store.Application.Services.Users.Queries.GetUsers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
@@ -20,92 +21,86 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly IGetRolesService _getRolesService;
         private readonly IRegisterUserService _registerUserService;
         private readonly IRemoveUserService _removeUserService;
-        private readonly IChangeStatusUserService _changeStatusUserService;
+        private readonly IUserSatusChangeService _userSatusChangeService;
         private readonly IEditUserService _editUserService;
-
-
-        public UsersController(
-            IGetUsersService getUsersService, 
-            IGetRolesService getRolesService,
-            IRegisterUserService registerUserService,
-            IRemoveUserService removeUserService,
-            IChangeStatusUserService changeStatusUserService,
-            IEditUserService editUserService)
+        public UsersController(IGetUsersService getUsersService
+            , IGetRolesService getRolesService
+            , IRegisterUserService registerUserService
+            , IRemoveUserService removeUserService
+            , IUserSatusChangeService userSatusChangeService
+            , IEditUserService editUserService)
         {
             _getUsersService = getUsersService;
             _getRolesService = getRolesService;
             _registerUserService = registerUserService;
             _removeUserService = removeUserService;
-            _changeStatusUserService = changeStatusUserService;
+            _userSatusChangeService = userSatusChangeService;
             _editUserService = editUserService;
         }
 
-        [HttpGet]
-        public IActionResult Index(String SearchKey, int page = 1)
+
+        public IActionResult Index(string serchkey, int page = 1)
         {
             return View(_getUsersService.Execute(new RequestGetUserDto
             {
-                SearchKey = SearchKey,
-                Page = page
+                Page = page,
+                SearchKey = serchkey,
             }));
         }
+
+
+
+
 
         [HttpGet]
         public IActionResult Create()
         {
-            var result = _getRolesService.Execute();
-
-            ViewBag.Roles = new SelectList(result.Data, "Id", "Name");
-            //ViewBag.Roles = new SelectList(_getRolesService.Execute().Data, "Id", "name");
+            ViewBag.Roles = new SelectList(_getRolesService.Execute().Data, "Id", "Name");
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Create(string Email, string FullName, int RoleId, string Password, string RePassword)
-        {
-            try
-            {
-                var result = _registerUserService.Execute(new RequestRegisterUserDto()
-                {
-                    Fullname = FullName,
-                    Email = Email,
-                    Roles = new List<RolesInRegisterUserDto>()
-                    {
-                        new RolesInRegisterUserDto() {
-                            Id = RoleId,
-                        }
-                    },
-                    Password = Password,
-                    RePassword = RePassword
-                });
 
-                return Json(result);
-            }catch(Exception ex)
+        [HttpPost]
+        public IActionResult Create(string Email, string FullName, long RoleId, string Password, string RePassword)
+        {
+            var result = _registerUserService.Execute(new RequestRegisterUserDto
             {
-                return Json(new { isSuccess = false, message = "An error occurred: " + ex.Message });
-            }
+                Email = Email,
+                FullName = FullName,
+                roles = new List<RolesInRegisterUserDto>()
+                   {
+                        new RolesInRegisterUserDto
+                        {
+                             Id= RoleId
+                        }
+                   },
+                Password = Password,
+                RePasword = RePassword,
+            });
+            return Json(result);
         }
 
         [HttpPost]
-        public IActionResult Delete(int UserId)
+        public IActionResult Delete(long UserId)
         {
             return Json(_removeUserService.Execute(UserId));
         }
-            
+
         [HttpPost]
-        public IActionResult ChangeStatus(int UserId)
+        public IActionResult UserSatusChange(long UserId)
         {
-            return Json(_changeStatusUserService.Execute(UserId));
+            return Json(_userSatusChangeService.Execute(UserId));
         }
 
         [HttpPost]
-        public IActionResult Edit(int UserId, string FullName)
+        public IActionResult Edit(long UserId, string Fullname)
         {
-            return Json(_editUserService.Execute(new RequestEditUserDto()
+            return Json(_editUserService.Execute(new RequestEdituserDto
             {
-                FullName = FullName,
-                UserId = UserId
+                Fullname = Fullname,
+                UserId = UserId,
             }));
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using _04_06_01_ecommerce.Application.Interface.Context;
 using _04_06_01_ecommerce.Common.Dto;
 using _04_06_01_ecommerce.Domain.Entities.Users;
+using Bugeto_Store.Common;
 
 namespace _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser
 {
@@ -67,11 +68,15 @@ namespace _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser
                     };
                 }
 
+                var passwordHasher = new PasswordHasher();
+                var hashedPassword = passwordHasher.HashPassword(request.Password);
+
                 User user = new User()
                 {
                     Email = request.Email,
                     FullName = request.Fullname,
-                    Password = request.Password,
+                    Password = hashedPassword,
+                    IsActive = true,
                 };
 
                 List<UserInRole> userInRoles = new List<UserInRole>();
