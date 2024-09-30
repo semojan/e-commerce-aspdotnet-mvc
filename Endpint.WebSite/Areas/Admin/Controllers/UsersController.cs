@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using Bugeto_Store.Application.Services.Users.Commands.EditUser;
 using Bugeto_Store.Application.Services.Users.Commands.RemoveUser;
 using Bugeto_Store.Application.Services.Users.Commands.RgegisterUser;
 using Bugeto_Store.Application.Services.Users.Commands.UserSatusChange;
 using Bugeto_Store.Application.Services.Users.Queries.GetRoles;
 using Bugeto_Store.Application.Services.Users.Queries.GetUsers;
+=======
+using _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser;
+using _04_06_01_ecommerce.Application.Services.Users.Commands.RemoveUser;
+using _04_06_01_ecommerce.Application.Services.Users.Queries.GetRoles;
+using _04_06_01_ecommerce.Application.Services.Users.Queries.GetUsers;
+>>>>>>> parent of 0d74087 (edit user added)
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -21,6 +28,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         private readonly IGetRolesService _getRolesService;
         private readonly IRegisterUserService _registerUserService;
         private readonly IRemoveUserService _removeUserService;
+<<<<<<< HEAD
         private readonly IUserSatusChangeService _userSatusChangeService;
         private readonly IEditUserService _editUserService;
         public UsersController(IGetUsersService getUsersService
@@ -29,13 +37,25 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             , IRemoveUserService removeUserService
             , IUserSatusChangeService userSatusChangeService
             , IEditUserService editUserService)
+=======
+
+
+        public UsersController(
+            IGetUsersService getUsersService, 
+            IGetRolesService getRolesService,
+            IRegisterUserService registerUserService,
+            IRemoveUserService removeUserService)
+>>>>>>> parent of 0d74087 (edit user added)
         {
             _getUsersService = getUsersService;
             _getRolesService = getRolesService;
             _registerUserService = registerUserService;
             _removeUserService = removeUserService;
+<<<<<<< HEAD
             _userSatusChangeService = userSatusChangeService;
             _editUserService = editUserService;
+=======
+>>>>>>> parent of 0d74087 (edit user added)
         }
 
 
@@ -85,6 +105,7 @@ namespace EndPoint.Site.Areas.Admin.Controllers
         {
             return Json(_removeUserService.Execute(UserId));
         }
+<<<<<<< HEAD
 
         [HttpPost]
         public IActionResult UserSatusChange(long UserId)
@@ -102,5 +123,8 @@ namespace EndPoint.Site.Areas.Admin.Controllers
             }));
         }
 
+=======
+            
+>>>>>>> parent of 0d74087 (edit user added)
     }
 }
