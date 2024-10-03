@@ -1,4 +1,6 @@
 using _04_06_01_ecommerce.Application.Interface.Context;
+using _04_06_01_ecommerce.Application.Interface.FacadPatterns;
+using _04_06_01_ecommerce.Application.Services.Products.FacadPattern;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.ChangeStatusUser;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.EditUserService;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.LoginUser;
@@ -32,6 +34,8 @@ builder.Services.AddScoped<IRemoveUserService, RemoveUserService>();
 builder.Services.AddScoped<IChangeStatusUserService, ChangeStatusUserService>();
 builder.Services.AddScoped<IEditUserService, EditUserService>();
 builder.Services.AddScoped<ILoginUserService, LoginUserService>();
+
+builder.Services.AddScoped<IProductFacad, ProductFacad>();
 
 
 string connection = @"Data Source=DESKTOP-F91VCPQ; Initial Catalog=Store; Integrated Security=True; TrustServerCertificate=True;";

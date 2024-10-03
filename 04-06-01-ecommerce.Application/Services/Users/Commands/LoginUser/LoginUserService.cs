@@ -31,8 +31,8 @@ namespace _04_06_01_ecommerce.Application.Services.Users.Commands.LoginUser
                 .Include(p => p.UserInRoles)
                 .ThenInclude(p => p.Role)
                 .Where(p => p.Email.Equals(username)
-            && p.IsActive == true)
-            .FirstOrDefault();
+                && p.IsActive == true)
+                .FirstOrDefault();
 
             if (user == null)
             {

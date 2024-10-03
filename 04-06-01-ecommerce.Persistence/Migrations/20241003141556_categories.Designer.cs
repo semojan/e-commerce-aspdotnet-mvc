@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _04_06_01_ecommerce.Persistence;
 
@@ -11,9 +12,11 @@ using _04_06_01_ecommerce.Persistence;
 namespace _04_06_01_ecommerce.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20241003141556_categories")]
+    partial class categories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +56,7 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Users.Role", b =>
@@ -82,27 +85,27 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            InsertTime = new DateTime(2024, 10, 3, 17, 49, 44, 434, DateTimeKind.Local).AddTicks(8609),
+                            InsertTime = new DateTime(2024, 10, 3, 17, 45, 55, 690, DateTimeKind.Local).AddTicks(738),
                             IsDeleted = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            InsertTime = new DateTime(2024, 10, 3, 17, 49, 44, 436, DateTimeKind.Local).AddTicks(9375),
+                            InsertTime = new DateTime(2024, 10, 3, 17, 45, 55, 691, DateTimeKind.Local).AddTicks(4179),
                             IsDeleted = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3,
-                            InsertTime = new DateTime(2024, 10, 3, 17, 49, 44, 436, DateTimeKind.Local).AddTicks(9545),
+                            InsertTime = new DateTime(2024, 10, 3, 17, 45, 55, 691, DateTimeKind.Local).AddTicks(4281),
                             IsDeleted = false,
                             Name = "Customer"
                         });
@@ -148,7 +151,7 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Users.UserInRole", b =>
@@ -183,7 +186,7 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UsersInRoles", (string)null);
+                    b.ToTable("UsersInRoles");
                 });
 
             modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Products.Category", b =>

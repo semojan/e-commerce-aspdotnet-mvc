@@ -1,4 +1,5 @@
-﻿using _04_06_01_ecommerce.Domain.Entities.Users;
+﻿using _04_06_01_ecommerce.Domain.Entities.Products;
+using _04_06_01_ecommerce.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace _04_06_01_ecommerce.Application.Interface.Context
         DbSet<User> Users { get; set; }
         DbSet<Role> Roles { get; set; }
         DbSet<UserInRole> UsersInRoles { get; set; }
+        DbSet<Category> Categories { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
