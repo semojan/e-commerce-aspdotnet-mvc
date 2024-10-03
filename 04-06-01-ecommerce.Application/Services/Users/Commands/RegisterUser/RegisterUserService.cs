@@ -1,6 +1,7 @@
 ﻿using _04_06_01_ecommerce.Application.Interface.Context;
 using _04_06_01_ecommerce.Common.Dto;
 using _04_06_01_ecommerce.Domain.Entities.Users;
+using Bugeto_Store.Common;
 
 namespace _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser
 {
@@ -66,12 +67,15 @@ namespace _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser
                         Message = "رمز عبور و تکرار آن مطابقت ندارند."
                     };
                 }
+                var passwordHasher = new PasswordHasher();
+                var hashedPass = passwordHasher.HashPassword(request.Password);
 
                 User user = new User()
                 {
                     Email = request.Email,
                     FullName = request.Fullname,
-                    Password = request.Password,
+                    Password = hashedPass,
+                    IsActive = true,
                 };
 
                 List<UserInRole> userInRoles = new List<UserInRole>();
@@ -112,8 +116,8 @@ namespace _04_06_01_ecommerce.Application.Services.Users.Commands.RegisterUser
                         UserId = 0,
                     },
                     Success = false,
-                    //Message = "ثبت نام کاربر انجام نشد"
-                    Message= ex.InnerException?.Message ?? ex.Message
+                    Message = "ثبت نام کاربر انجام نشد"
+                    //Message = ex.InnerException?.Message ?? ex.Message
                 };
             }
             
