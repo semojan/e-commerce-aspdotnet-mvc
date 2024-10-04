@@ -22,6 +22,9 @@ namespace _04_06_01_ecommerce.Persistence
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserInRole> UsersInRoles { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImages> ProductImages { get; set; }
+        public DbSet<ProductFeatures> ProductFeatures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +41,9 @@ namespace _04_06_01_ecommerce.Persistence
             modelBuilder.Entity<Role>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<UserInRole>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<ProductImages>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<ProductFeatures>().HasQueryFilter(p => !p.IsDeleted);
         }
 
         private void SeedData(ModelBuilder modelBuilder)

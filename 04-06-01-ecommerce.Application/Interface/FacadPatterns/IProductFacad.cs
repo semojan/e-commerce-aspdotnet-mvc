@@ -1,4 +1,6 @@
 ﻿using _04_06_01_ecommerce.Application.Services.Products.Commands.AddCategory;
+using _04_06_01_ecommerce.Application.Services.Products.Commands.AddProduct;
+using _04_06_01_ecommerce.Application.Services.Products.Queries.GetAllCategory;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetCategories;
 using System;
 using System.Collections.Generic;
@@ -13,5 +15,10 @@ namespace _04_06_01_ecommerce.Application.Interface.FacadPatterns
         IAddCategoryService AddCategoryService { get; }
 
         IGetCategoriesService GetCategoriesService { get; }
+
+        IGetAllCategoriesService GetAllCategoriesService { get; }
+
+        IAddProductService AddProductService { get; }
+
     }
 }
