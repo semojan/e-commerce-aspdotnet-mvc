@@ -88,7 +88,7 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Commands.AddProduct
         {
             if (file != null)
             {
-                string folder = $@"images/productImages";
+                string folder = $@"images/productImages/";
                 var uploadRootFolder = Path.Combine(_environment.WebRootPath, folder);
                 if (!Directory.Exists(uploadRootFolder))
                 {

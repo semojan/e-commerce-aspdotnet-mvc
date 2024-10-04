@@ -14,9 +14,15 @@ namespace Endpint.WebSite.Areas.Admin.Controllers
             _productFacad = productFacad;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 20)
         {
-            return View();
+            return View(_productFacad.GetProductsForAdminService.Execute(page, pageSize).Data);
+        }
+
+        [HttpGet]
+        public IActionResult Detail(int Id)
+        {
+            return View(_productFacad.GetProductDetailForAdminService.Execute(Id).Data);
         }
 
         [HttpGet]

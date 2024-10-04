@@ -1,6 +1,6 @@
-﻿@* @addTagHelper *, LazZiya.TagHelpers
-@using Bugeto_Store.Application.Services.Products.Queries.GetProductForAdmin;
-@model ProductForAdminDto;
+﻿@addTagHelper *, LazZiya.TagHelpers
+@using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForAdmin
+@model ProductsForAdminDto;
 
 @{
     ViewData["Title"] = "لیست محصولات";
@@ -43,7 +43,7 @@
                                                         <td>@item.Brand</td>
                                                         <td>@item.Price.ToString("n0")</td>
                                                         <td>@item.Inventory</td>
-                                                        <td>@item.Displayed</td>
+                                                        <td>@item.Display</td>
                                                         <td>
                                                             <a class="btn btn-danger">حذف</a>
                                                             <a href="~/admin/products/detail/@item.Id" class="btn btn-info">اطلاعات بیشتر</a>
@@ -78,4 +78,4 @@
             </div>
         </section>
     </div>
-</div> *@
+</div>
