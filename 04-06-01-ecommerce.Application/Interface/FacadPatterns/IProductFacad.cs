@@ -3,6 +3,7 @@ using _04_06_01_ecommerce.Application.Services.Products.Commands.AddProduct;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetAllCategory;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetCategories;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductDetailForCustomer;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForAdmin;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForCustomer;
 using System;
@@ -28,5 +29,7 @@ namespace _04_06_01_ecommerce.Application.Interface.FacadPatterns
         IGetProductDetailForAdminService GetProductDetailForAdminService { get; }
 
         IGetProductsForCustomerService GetProductsForCustomerService { get; }
+
+        IGetProductDetailForCustomerService GetProductDetailForCustomerService { get; }
     }
 }

@@ -10,9 +10,18 @@ namespace Endpint.WebSite.Controllers
         {
             _productFacad = productFacad;
         }
+
+        [HttpGet]
         public IActionResult Index(int page = 1)
         {
             return View(_productFacad.GetProductsForCustomerService.Execute(page).Data);
+        }
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var data = _productFacad.GetProductDetailForCustomerService.Execute(id).Data;
+            return View(data);
         }
     }
 }
