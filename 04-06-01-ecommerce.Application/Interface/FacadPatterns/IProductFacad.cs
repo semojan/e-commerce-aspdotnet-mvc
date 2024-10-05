@@ -4,6 +4,7 @@ using _04_06_01_ecommerce.Application.Services.Products.Queries.GetAllCategory;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetCategories;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductDetailForAdmin;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForAdmin;
+using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForCustomer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,7 @@ namespace _04_06_01_ecommerce.Application.Interface.FacadPatterns
         IGetProductsForAdminService GetProductsForAdminService { get; }
 
         IGetProductDetailForAdminService GetProductDetailForAdminService { get; }
+
+        IGetProductsForCustomerService GetProductsForCustomerService { get; }
     }
 }

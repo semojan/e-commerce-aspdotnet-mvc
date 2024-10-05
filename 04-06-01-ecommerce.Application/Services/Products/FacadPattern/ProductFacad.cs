@@ -6,6 +6,7 @@ using _04_06_01_ecommerce.Application.Services.Products.Queries.GetAllCategory;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetCategories;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductDetailForAdmin;
 using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForAdmin;
+using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForCustomer;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
@@ -76,6 +77,19 @@ namespace _04_06_01_ecommerce.Application.Services.Products.FacadPattern
             get
             {
                 return _getProductDetailForAdmin ?? new GetProductDetailForAdminService(_context);
+            }
+        }
+
+
+        //Customer -----------------------------------------------------------------------------------
+
+
+        private IGetProductsForCustomerService _getProductsForCustomer;
+        public IGetProductsForCustomerService GetProductsForCustomerService
+        {
+            get
+            {
+                return _getProductsForCustomer ?? new GetProductsForCustomerService(_context);
             }
         }
     }
