@@ -12,9 +12,9 @@ namespace Endpint.WebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int? CategoryId = null, int page = 1)
+        public IActionResult Index(string SearchKey, int? CategoryId = null, int page = 1)
         {
-            return View(_productFacad.GetProductsForCustomerService.Execute(page, CategoryId).Data);
+            return View(_productFacad.GetProductsForCustomerService.Execute(SearchKey, page, CategoryId).Data);
         }
 
         [HttpGet]

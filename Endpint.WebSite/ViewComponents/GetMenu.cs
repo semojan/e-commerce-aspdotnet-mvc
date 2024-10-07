@@ -1,4 +1,4 @@
-﻿using _04_06_01_ecommerce.Application.Services.Common.Queeries;
+﻿using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetMenuItem;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Endpint.WebSite.ViewComponents

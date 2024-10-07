@@ -1,6 +1,7 @@
 using _04_06_01_ecommerce.Application.Interface.Context;
 using _04_06_01_ecommerce.Application.Interface.FacadPatterns;
-using _04_06_01_ecommerce.Application.Services.Common.Queeries;
+using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetCategories;
+using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetMenuItem;
 using _04_06_01_ecommerce.Application.Services.Products.FacadPattern;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.ChangeStatusUser;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.EditUserService;
@@ -39,6 +40,7 @@ builder.Services.AddScoped<ILoginUserService, LoginUserService>();
 builder.Services.AddScoped<IProductFacad, ProductFacad>();
 
 builder.Services.AddScoped<IGetMenuItemService, GetMenuItemService>();
+builder.Services.AddScoped<IGetSearchCategoriesService, GetSearchCategoriesService>();
 
 
 string connection = @"Data Source=DESKTOP-F91VCPQ; Initial Catalog=Store; Integrated Security=True; TrustServerCertificate=True;";

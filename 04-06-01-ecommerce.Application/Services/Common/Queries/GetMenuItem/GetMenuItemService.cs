@@ -2,7 +2,7 @@
 using _04_06_01_ecommerce.Common.Dto;
 using Microsoft.EntityFrameworkCore;
 
-namespace _04_06_01_ecommerce.Application.Services.Common.Queeries
+namespace _04_06_01_ecommerce.Application.Services.Common.Queeries.GetMenuItem
 {
     public class GetMenuItemService : IGetMenuItemService
     {

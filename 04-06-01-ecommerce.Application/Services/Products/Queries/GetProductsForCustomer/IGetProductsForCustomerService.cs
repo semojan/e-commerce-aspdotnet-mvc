@@ -9,6 +9,6 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
 {
     public interface IGetProductsForCustomerService
     {
-        ResultDto<ResultProductsForCustomerDto> Execute(int page, int? CategoryId);
+        ResultDto<ResultProductsForCustomerDto> Execute(string SearchKey, int page, int? CategoryId);
     }
 }

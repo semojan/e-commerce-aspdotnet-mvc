@@ -12,7 +12,7 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
         {
             _context = context;
         }
-        public ResultDto<ResultProductsForCustomerDto> Execute(int page, int? CategoryId)
+        public ResultDto<ResultProductsForCustomerDto> Execute(string SearchKey, int page, int? CategoryId)
         {
             int totalRow = 0;
             Random random = new Random();
@@ -22,6 +22,10 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
             if(CategoryId != null)
             {
                 productsQuery = productsQuery.Where(p => p.CategoryId == CategoryId || p.Category.ParentCategoryId == CategoryId).AsQueryable();
+            }
+            if (!string.IsNullOrWhiteSpace(SearchKey))
+            {
+                productsQuery = productsQuery.Where(p => p.Name.Contains(SearchKey) || p.Brand.Contains(SearchKey)).AsQueryable();
             }
 
             var products = productsQuery
