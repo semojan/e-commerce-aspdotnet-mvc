@@ -12,12 +12,19 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
         {
             _context = context;
         }
-        public ResultDto<ResultProductsForCustomerDto> Execute(int page)
+        public ResultDto<ResultProductsForCustomerDto> Execute(int page, int? CategoryId)
         {
             int totalRow = 0;
             Random random = new Random();
-            var products = _context.Products
+            var productsQuery = _context.Products
                 .Include(p => p.ProductImages)
+                .AsQueryable();
+            if(CategoryId != null)
+            {
+                productsQuery = productsQuery.Where(p => p.CategoryId == CategoryId || p.Category.ParentCategoryId == CategoryId).AsQueryable();
+            }
+
+            var products = productsQuery
                 .ToPaged(page, 5, out totalRow)
                 .Select(p => new ProductsForCustomerDto
                 {
