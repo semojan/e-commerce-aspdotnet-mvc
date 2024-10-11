@@ -1,4 +1,5 @@
-﻿using _04_06_01_ecommerce.Domain.Entities.Products;
+﻿using _04_06_01_ecommerce.Domain.Entities.HomePage;
+using _04_06_01_ecommerce.Domain.Entities.Products;
 using _04_06_01_ecommerce.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,6 +20,7 @@ namespace _04_06_01_ecommerce.Application.Interface.Context
         DbSet<Product> Products { get; set; }
         DbSet<ProductImages> ProductImages { get; set; }
         DbSet<ProductFeatures> ProductFeatures { get; set; }
+        DbSet<Slider> Sliders { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

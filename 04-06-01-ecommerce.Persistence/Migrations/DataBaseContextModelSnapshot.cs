@@ -22,6 +22,39 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.HomePage.Slider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Src")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
             modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Products.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -214,21 +247,21 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            InsertTime = new DateTime(2024, 10, 11, 10, 47, 43, 702, DateTimeKind.Local).AddTicks(8273),
+                            InsertTime = new DateTime(2024, 10, 11, 15, 36, 4, 634, DateTimeKind.Local).AddTicks(4821),
                             IsDeleted = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            InsertTime = new DateTime(2024, 10, 11, 10, 47, 43, 704, DateTimeKind.Local).AddTicks(9644),
+                            InsertTime = new DateTime(2024, 10, 11, 15, 36, 4, 635, DateTimeKind.Local).AddTicks(8710),
                             IsDeleted = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3,
-                            InsertTime = new DateTime(2024, 10, 11, 10, 47, 43, 704, DateTimeKind.Local).AddTicks(9904),
+                            InsertTime = new DateTime(2024, 10, 11, 15, 36, 4, 635, DateTimeKind.Local).AddTicks(8811),
                             IsDeleted = false,
                             Name = "Customer"
                         });

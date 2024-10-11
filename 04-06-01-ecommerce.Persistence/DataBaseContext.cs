@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using _04_06_01_ecommerce.Domain.Entities.HomePage;
 
 namespace _04_06_01_ecommerce.Persistence
 {
@@ -25,6 +26,7 @@ namespace _04_06_01_ecommerce.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImages> ProductImages { get; set; }
         public DbSet<ProductFeatures> ProductFeatures { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,6 +46,7 @@ namespace _04_06_01_ecommerce.Persistence
             modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<ProductImages>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<ProductFeatures>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Slider>().HasQueryFilter(p => !p.IsDeleted);
         }
 
         private void SeedData(ModelBuilder modelBuilder)

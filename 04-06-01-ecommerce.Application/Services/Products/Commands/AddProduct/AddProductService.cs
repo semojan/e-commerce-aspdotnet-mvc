@@ -1,4 +1,5 @@
 ﻿using _04_06_01_ecommerce.Application.Interface.Context;
+using _04_06_01_ecommerce.Common;
 using _04_06_01_ecommerce.Common.Dto;
 using _04_06_01_ecommerce.Domain.Entities.Products;
 using Microsoft.AspNetCore.Hosting;
@@ -37,9 +38,10 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Commands.AddProduct
                 _context.Products.Add(product);
                 List<ProductImages> images = new List<ProductImages>();
 
+                Upload upload = new Upload(_environment);
                 foreach (var item in request.Images)
                 {
-                    var uploadResult = UploadFile(item);
+                    var uploadResult = upload.UploadFile(item, "productImages");
                     images.Add(new ProductImages
                     {
                         Product = product,
@@ -82,42 +84,6 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Commands.AddProduct
 
 
             throw new NotImplementedException();
-        }
-
-        private UploadDto UploadFile(IFormFile file)
-        {
-            if (file != null)
-            {
-                string folder = $@"images/productImages/";
-                var uploadRootFolder = Path.Combine(_environment.WebRootPath, folder);
-                if (!Directory.Exists(uploadRootFolder))
-                {
-                    Directory.CreateDirectory(uploadRootFolder);
-                }
-
-                if (file == null || file.Length == 0)
-                {
-                    return new UploadDto()
-                    {
-                        Status = false,
-                        FileNameAddress = "",
-                    };
-                }
-
-                string fileName = DateTime.Now.Ticks.ToString() + file.FileName;
-                var filePath = Path.Combine(uploadRootFolder, fileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    file.CopyTo(fileStream);
-                }
-
-                return new UploadDto()
-                {
-                    FileNameAddress = folder + fileName,
-                    Status = true,
-                };
-            }
-            return null;
-        }
+        }     
     }
 }
