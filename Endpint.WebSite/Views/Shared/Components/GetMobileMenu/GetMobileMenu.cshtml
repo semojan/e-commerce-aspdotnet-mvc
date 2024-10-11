@@ -1,0 +1,39 @@
+﻿@using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetMenuItem;
+@model List<MenuItemDto>
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{
+
+    <li>
+        <a href="~/products/index?CategoryId=@item.CategoryId" class="collapsed" type="button" data-toggle="collapse" data-target="#collapse-@item.Name" aria-expanded="false" aria-controls="collapse-@item.Name">
+            @if (item.Children.Count() > 0)
+            {
+                <i class="mdi mdi-chevron-down"></i>
+            }
+            @item.Name
+        </a>
+            
+
+        @if (item.Children.Count() > 0)
+        {
+            <div id="collapse-@item.Name" class="collapse" aria-labelledby="heading-@item.Name" data-parent="#accordionExample" style="">
+                <ul>
+
+                    @foreach (var itemChild in item.Children)
+                    {
+                        <li class="has-sub">
+                            <a href="~/products/index?CategoryId=@itemChild.CategoryId" class="category-level-2">
+                                @itemChild.Name
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+
+    </li>
+}
