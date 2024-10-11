@@ -25,6 +25,9 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductDe
                 throw new Exception("Product not found...");
             }
 
+            product.ViewCount++;
+            _context.SaveChanges();
+
             return new ResultDto<ProductDetailForCustomerDto>
             {
                 Data = new ProductDetailForCustomerDto

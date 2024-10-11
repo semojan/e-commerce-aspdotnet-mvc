@@ -9,6 +9,36 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
 {
     public interface IGetProductsForCustomerService
     {
-        ResultDto<ResultProductsForCustomerDto> Execute(string SearchKey, int page, int? CategoryId);
+        ResultDto<ResultProductsForCustomerDto> Execute(Ordering ordering, string SearchKey, int page, int pageSize, int? CategoryId);
+    }
+
+    public enum Ordering
+    {
+
+        NoOrder = 0,
+        /// <summary>
+        /// پربازدیدترین
+        /// </summary>
+        MostVisited = 1,
+        /// <summary>
+        /// پرفروشترین
+        /// </summary>
+        BestSelling = 2,
+        /// <summary>
+        /// محبوبترین
+        /// </summary>
+        MostPopular = 3,
+        /// <summary>
+        /// جدیدترین
+        /// </summary>
+        Newest = 4,
+        /// <summary>
+        /// ارزانترین
+        /// </summary>
+        Cheapest = 5,
+        /// <summary>
+        /// گرانترین
+        /// </summary>
+        MostExpensive = 6
     }
 }

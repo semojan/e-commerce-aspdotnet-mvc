@@ -12,7 +12,7 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
         {
             _context = context;
         }
-        public ResultDto<ResultProductsForCustomerDto> Execute(string SearchKey, int page, int? CategoryId)
+        public ResultDto<ResultProductsForCustomerDto> Execute(Ordering ordering, string SearchKey, int page, int pageSize, int? CategoryId)
         {
             int totalRow = 0;
             Random random = new Random();
@@ -28,8 +28,31 @@ namespace _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsF
                 productsQuery = productsQuery.Where(p => p.Name.Contains(SearchKey) || p.Brand.Contains(SearchKey)).AsQueryable();
             }
 
+            switch (ordering)
+            {
+                case Ordering.NoOrder:
+                    productsQuery = productsQuery.OrderByDescending(p => p.Id).AsQueryable();
+                    break;
+                case Ordering.MostVisited:
+                    productsQuery = productsQuery.OrderByDescending(p => p.ViewCount).AsQueryable();
+                    break;
+                case Ordering.BestSelling:
+                    break;
+                case Ordering.MostPopular:
+                    break;
+                case Ordering.Newest:
+                    productsQuery = productsQuery.OrderByDescending(p => p.Id).AsQueryable();
+                    break;
+                case Ordering.Cheapest:
+                    productsQuery = productsQuery.OrderBy(p => p.Price).AsQueryable();
+                    break;
+                case Ordering.MostExpensive:
+                    productsQuery = productsQuery.OrderByDescending(p => p.Price).AsQueryable();
+                    break;
+            }
+
             var products = productsQuery
-                .ToPaged(page, 5, out totalRow)
+                .ToPaged(page, pageSize, out totalRow)
                 .Select(p => new ProductsForCustomerDto
                 {
                     Id = p.Id,

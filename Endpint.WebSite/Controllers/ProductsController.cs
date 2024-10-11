@@ -1,4 +1,5 @@
 ﻿using _04_06_01_ecommerce.Application.Interface.FacadPatterns;
+using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForCustomer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Endpint.WebSite.Controllers
@@ -12,9 +13,9 @@ namespace Endpint.WebSite.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string SearchKey, int? CategoryId = null, int page = 1)
+        public IActionResult Index(Ordering ordering, string SearchKey, int? CategoryId = null, int page = 1, int pageSize = 20)
         {
-            return View(_productFacad.GetProductsForCustomerService.Execute(SearchKey, page, CategoryId).Data);
+            return View(_productFacad.GetProductsForCustomerService.Execute(ordering , SearchKey, page, pageSize, CategoryId).Data);
         }
 
         [HttpGet]
