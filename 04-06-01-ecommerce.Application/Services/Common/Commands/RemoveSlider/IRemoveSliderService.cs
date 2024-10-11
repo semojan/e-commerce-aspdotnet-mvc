@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _04_06_01_ecommerce.Application.Services.Common.Queries.GetSliders
+namespace _04_06_01_ecommerce.Application.Services.Common.Commands.RemoveSlider
 {
-    public interface IGetSlidersService
+    public interface IRemoveSliderService
     {
-        ResultDto<List<SliderDto>> Execute();
+        ResultDto Execute(int SliderId);
     }
 }
