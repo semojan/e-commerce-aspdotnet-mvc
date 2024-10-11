@@ -21,6 +21,7 @@ namespace _04_06_01_ecommerce.Application.Interface.Context
         DbSet<ProductImages> ProductImages { get; set; }
         DbSet<ProductFeatures> ProductFeatures { get; set; }
         DbSet<Slider> Sliders { get; set; }
+        DbSet<HomePageImage> HomePageImages { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

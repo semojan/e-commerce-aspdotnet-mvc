@@ -27,6 +27,7 @@ namespace _04_06_01_ecommerce.Persistence
         public DbSet<ProductImages> ProductImages { get; set; }
         public DbSet<ProductFeatures> ProductFeatures { get; set; }
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<HomePageImage> HomePageImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,6 +48,7 @@ namespace _04_06_01_ecommerce.Persistence
             modelBuilder.Entity<ProductImages>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<ProductFeatures>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Slider>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<HomePageImage>().HasQueryFilter(p => !p.IsDeleted);
         }
 
         private void SeedData(ModelBuilder modelBuilder)

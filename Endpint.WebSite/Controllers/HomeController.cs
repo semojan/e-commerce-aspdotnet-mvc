@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using EndPoint.Site.Models;
 using _04_06_01_ecommerce.Application.Services.Common.Queries.GetSliders;
 using Endpint.WebSite.Models.ViewModels.HomePage;
+using _04_06_01_ecommerce.Application.Services.Common.Queries.GetHomeImages;
+using _04_06_01_ecommerce.Application.Interface.FacadPatterns;
+using _04_06_01_ecommerce.Application.Services.Products.Queries.GetProductsForCustomer;
 
 namespace EndPoint.Site.Controllers
 {
@@ -15,12 +18,18 @@ namespace EndPoint.Site.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IGetSlidersService _getSlidersService;
+        private readonly IGetHomeImagesService _getHomeImagesService;
+        private readonly IProductFacad _productFacad;
 
         public HomeController(ILogger<HomeController> logger,
-            IGetSlidersService getSliders)
+            IGetSlidersService getSlidersService,
+            IGetHomeImagesService getHomeImagesService,
+            IProductFacad productFacad)
         {
             _logger = logger;
-            _getSlidersService = getSliders;
+            _getSlidersService = getSlidersService;
+            _getHomeImagesService = getHomeImagesService;
+            _productFacad = productFacad;
         }
 
         public IActionResult Index()
@@ -28,6 +37,13 @@ namespace EndPoint.Site.Controllers
             HomePageViewModel homePage = new HomePageViewModel()
             {
                 Sliders = _getSlidersService.Execute().Data,
+                HomeImages = _getHomeImagesService.Execute().Data,
+                Digital = _productFacad.GetProductsForCustomerService.Execute(
+                    Ordering.Newest,
+                    null, 1, 6, 3).Data.Products,
+                Clothes = _productFacad.GetProductsForCustomerService.Execute(
+                    Ordering.Newest,
+                    null, 1, 6, 2).Data.Products,
             };
             return View(homePage);
         }   

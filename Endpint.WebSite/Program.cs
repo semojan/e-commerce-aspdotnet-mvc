@@ -3,7 +3,9 @@ using _04_06_01_ecommerce.Application.Interface.FacadPatterns;
 using _04_06_01_ecommerce.Application.Services.Common.Commands.RemoveSlider;
 using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetCategories;
 using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetMenuItem;
+using _04_06_01_ecommerce.Application.Services.Common.Queries.GetHomeImages;
 using _04_06_01_ecommerce.Application.Services.Common.Queries.GetSliders;
+using _04_06_01_ecommerce.Application.Services.HomePage.AddHomePageImages;
 using _04_06_01_ecommerce.Application.Services.HomePage.AddSlider;
 using _04_06_01_ecommerce.Application.Services.Products.FacadPattern;
 using _04_06_01_ecommerce.Application.Services.Users.Commands.ChangeStatusUser;
@@ -48,6 +50,8 @@ builder.Services.AddScoped<IGetSearchCategoriesService, GetSearchCategoriesServi
 builder.Services.AddScoped<IAddSliderService, AddSliderService>();
 builder.Services.AddScoped<IGetSlidersService, GetSlidersService>();
 builder.Services.AddScoped<IRemoveSliderService, RemoveSliderService>();
+builder.Services.AddScoped<IAddHomePageImagesService, AddHomePageImagesService>();
+builder.Services.AddScoped<IGetHomeImagesService, GetHomeImagesService>();
 
 
 string connection = @"Data Source=DESKTOP-F91VCPQ; Initial Catalog=Store; Integrated Security=True; TrustServerCertificate=True;";
