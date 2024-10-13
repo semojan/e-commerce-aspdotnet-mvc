@@ -1,5 +1,6 @@
 using _04_06_01_ecommerce.Application.Interface.Context;
 using _04_06_01_ecommerce.Application.Interface.FacadPatterns;
+using _04_06_01_ecommerce.Application.Services.Carts;
 using _04_06_01_ecommerce.Application.Services.Common.Commands.RemoveSlider;
 using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetCategories;
 using _04_06_01_ecommerce.Application.Services.Common.Queeries.GetMenuItem;
@@ -52,6 +53,7 @@ builder.Services.AddScoped<IGetSlidersService, GetSlidersService>();
 builder.Services.AddScoped<IRemoveSliderService, RemoveSliderService>();
 builder.Services.AddScoped<IAddHomePageImagesService, AddHomePageImagesService>();
 builder.Services.AddScoped<IGetHomeImagesService, GetHomeImagesService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 
 string connection = @"Data Source=DESKTOP-F91VCPQ; Initial Catalog=Store; Integrated Security=True; TrustServerCertificate=True;";

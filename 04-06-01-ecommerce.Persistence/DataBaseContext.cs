@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using _04_06_01_ecommerce.Domain.Entities.HomePage;
+using _04_06_01_ecommerce.Domain.Entities.Carts;
 
 namespace _04_06_01_ecommerce.Persistence
 {
@@ -28,6 +29,8 @@ namespace _04_06_01_ecommerce.Persistence
         public DbSet<ProductFeatures> ProductFeatures { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<HomePageImage> HomePageImages { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +52,8 @@ namespace _04_06_01_ecommerce.Persistence
             modelBuilder.Entity<ProductFeatures>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Slider>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<HomePageImage>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsDeleted);
         }
 
         private void SeedData(ModelBuilder modelBuilder)

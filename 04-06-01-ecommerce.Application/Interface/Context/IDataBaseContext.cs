@@ -1,4 +1,5 @@
-﻿using _04_06_01_ecommerce.Domain.Entities.HomePage;
+﻿using _04_06_01_ecommerce.Domain.Entities.Carts;
+using _04_06_01_ecommerce.Domain.Entities.HomePage;
 using _04_06_01_ecommerce.Domain.Entities.Products;
 using _04_06_01_ecommerce.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,8 @@ namespace _04_06_01_ecommerce.Application.Interface.Context
         DbSet<ProductFeatures> ProductFeatures { get; set; }
         DbSet<Slider> Sliders { get; set; }
         DbSet<HomePageImage> HomePageImages { get; set; }
+        DbSet<Cart> Carts { get; set; }
+        DbSet<CartItem> CartItems { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

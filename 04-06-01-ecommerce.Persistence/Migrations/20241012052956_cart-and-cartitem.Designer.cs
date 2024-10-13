@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _04_06_01_ecommerce.Persistence;
 
@@ -11,9 +12,11 @@ using _04_06_01_ecommerce.Persistence;
 namespace _04_06_01_ecommerce.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20241012052956_cart-and-cartitem")]
+    partial class cartandcartitem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,9 +38,6 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
                     b.Property<DateTime?>("DeleteTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Finished")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("InsertTime")
                         .HasColumnType("datetime2");
@@ -66,9 +66,6 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -91,8 +88,6 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
 
@@ -360,21 +355,21 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            InsertTime = new DateTime(2024, 10, 13, 10, 34, 19, 247, DateTimeKind.Local).AddTicks(6233),
+                            InsertTime = new DateTime(2024, 10, 12, 8, 59, 55, 148, DateTimeKind.Local).AddTicks(7712),
                             IsDeleted = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            InsertTime = new DateTime(2024, 10, 13, 10, 34, 19, 248, DateTimeKind.Local).AddTicks(7609),
+                            InsertTime = new DateTime(2024, 10, 12, 8, 59, 55, 150, DateTimeKind.Local).AddTicks(6928),
                             IsDeleted = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3,
-                            InsertTime = new DateTime(2024, 10, 13, 10, 34, 19, 248, DateTimeKind.Local).AddTicks(7695),
+                            InsertTime = new DateTime(2024, 10, 12, 8, 59, 55, 150, DateTimeKind.Local).AddTicks(7015),
                             IsDeleted = false,
                             Name = "Customer"
                         });
@@ -469,19 +464,11 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
 
             modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Carts.CartItem", b =>
                 {
-                    b.HasOne("_04_06_01_ecommerce.Domain.Entities.Carts.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("_04_06_01_ecommerce.Domain.Entities.Products.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cart");
 
                     b.Navigation("Product");
                 });
@@ -545,11 +532,6 @@ namespace _04_06_01_ecommerce.Persistence.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("_04_06_01_ecommerce.Domain.Entities.Products.Category", b =>
