@@ -14,7 +14,7 @@ namespace _04_06_01_ecommerce.Application.Services.Carts
     {
         ResultDto AddToCart(int ProductId, Guid BrowserId);
         ResultDto RemoveFromCart(int ProductId, Guid BrowserId);
-        ResultDto<CartDto> GetMyCart(Guid BrowserId);
+        ResultDto<CartDto> GetMyCart(Guid BrowserId, int? UserId);
 
         ResultDto Add(int CartItemId);
         ResultDto LowOff(int CartItemId);
@@ -87,33 +87,61 @@ namespace _04_06_01_ecommerce.Application.Services.Carts
             };
         }
 
-        public ResultDto<CartDto> GetMyCart(Guid BrowserId)
+        public ResultDto<CartDto> GetMyCart(Guid BrowserId, int? UserId)
         {
-            var cart = _context.Carts
+            try
+            {
+                var cart = _context.Carts
                 .Include(p => p.CartItems)
                 .ThenInclude(p => p.Product)
                 .ThenInclude(p => p.ProductImages)
                 .Where(p => p.BrowserId == BrowserId && p.Finished == false)
+                .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
 
-            return new ResultDto<CartDto>()
-            {
-                Data = new CartDto()
+                if (cart == null)
                 {
-                    ProductCount = cart.CartItems.Count(),
-                    SumAmount = cart.CartItems.Sum(p => p.Price * p.Count),
-                    CartItems = cart.CartItems.Select(p => new CartItemDto
+                    return new ResultDto<CartDto>()
                     {
-                        Count = p.Count,
-                        Price = p.Price,
-                        Product = p.Product.Name,
-                        Id = p.Id,
-                        Images = p.Product?.ProductImages?.FirstOrDefault()?.Src ?? ""
-                    }).ToList(),
-                },
-                Success = true,
-                Message = ""
-            };
+                        Data = new CartDto()
+                        {
+                            CartItems = new List<CartItemDto>()
+                        },
+                        Success = false,
+                    };
+                }
+
+                if (UserId != null)
+                {
+                    var user = _context.Users.Find(UserId);
+                    cart.User = user;
+                    _context.SaveChanges();
+                }
+
+                return new ResultDto<CartDto>()
+                {
+                    Data = new CartDto()
+                    {
+                        ProductCount = cart.CartItems.Count(),
+                        SumAmount = cart.CartItems.Sum(p => p.Price * p.Count),
+                        CartItems = cart.CartItems.Select(p => new CartItemDto
+                        {
+                            Count = p.Count,
+                            Price = p.Price,
+                            Product = p.Product.Name,
+                            Id = p.Id,
+                            Images = p.Product?.ProductImages?.FirstOrDefault()?.Src ?? ""
+                        }).ToList(),
+                    },
+                    Success = true,
+                    Message = ""
+                };
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         public ResultDto LowOff(int CartItemId)

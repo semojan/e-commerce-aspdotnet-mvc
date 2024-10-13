@@ -1,4 +1,5 @@
 ﻿using _04_06_01_ecommerce.Application.Services.Carts;
+using Endpint.WebSite.Utilities;
 using EndPoint.Site.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,8 @@ namespace Endpint.WebSite.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            return View(viewName: "Cart", _cartService.GetMyCart(cookiesManager.GetBrowserId(HttpContext)).Data);
+            var userId = ClaimUtility.GetUserId(HttpContext.User);
+            return View(viewName: "Cart", _cartService.GetMyCart(cookiesManager.GetBrowserId(HttpContext), userId).Data);
         }
     }
 }

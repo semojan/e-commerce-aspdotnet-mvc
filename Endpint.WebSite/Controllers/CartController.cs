@@ -1,4 +1,5 @@
 ﻿using _04_06_01_ecommerce.Application.Services.Carts;
+using Endpint.WebSite.Utilities;
 using EndPoint.Site.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,8 @@ namespace Endpint.WebSite.Controllers
 
         public IActionResult Index()
         {
-            var resultData = _cartService.GetMyCart(cookiesManeger.GetBrowserId(HttpContext)).Data;
+            var userId = ClaimUtility.GetUserId(User);
+            var resultData = _cartService.GetMyCart(cookiesManeger.GetBrowserId(HttpContext), userId).Data;
             return View(resultData);
         }
 
